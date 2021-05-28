@@ -15,7 +15,7 @@ const getRealCssValue = function (value, type, baseValue) {
     case "vh":
       return ((+value * 100) / +baseValue).toFixed(2) + type;
     case "rem":
-      return (+value / +baseValue / 10).toFixed(2) + type;
+      return (+value / +baseValue).toFixed(2) + type;
     default:
       return value + type;
   }

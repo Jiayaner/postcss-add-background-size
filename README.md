@@ -1,17 +1,21 @@
 # postcss-add-background-size
 
 ### 功能
+
 识别 css 样式中 url（）加载的本地图片,为元素自动添加 width 和 height。
 
 ### 说明
+
 > 1、支持 px、vh、vw、rem。
 
-> 2、width、height、background-size可在当前类名下重写。
+> 2、width、height、background-size 可在当前类名下重写。
 
 > 3、同名文件变更需重启服务。
 
+> 4、请根据具体的插件顺序，选择对应的编译单位！！
 
 ### 参数
+
 插件参数:
 | 属性 |值类型 | 说明|必选|
 | --- | --- |--- |--- |
@@ -29,18 +33,18 @@ options：
 
 > ./src/testProject/scss/test.scss
 
-> ./src/testProject/img/button1.png (100*60)
+> ./src/testProject/img/button1.png (100\*60)
 
-> ./src/testProject/img/button2.png (100*60)
+> ./src/testProject/img/button2.png (100\*60)
 
 ```css
 .button1 {
   background: url(../img/button1.png);
-  color:black;
+  color: black;
 }
 .button2 {
   background: url(../img/button2.png);
-  color:black;
+  color: black;
 }
 ```
 
@@ -66,14 +70,14 @@ webpack.config.js:
   width: 100px;
   height: 60px;
   background-size: contain;
-  color:black;
+  color: black;
 }
 .button2 {
   background: url(../img/button2.png);
   width: 100px;
   height: 60px;
   background-size: contain;
-  color:black;
+  color: black;
 }
 ```
 
@@ -108,18 +112,60 @@ webpack.config.js:
   width: 5.2vw;
   height: 3.12vw;
   background-size: contain;
-  color:black;
+  color: black;
 }
 .button2 {
   background: url(../img/button2.png);
   width: 5.2vw;
   height: 3.12vw;
   background-size: contain;
-  color:black;
+  color: black;
 }
 ```
 
-##### 案例 3
+##### 案例 4
+
+webpack.config.js:
+
+```js
+{
+  loader: "postcss-loader",
+  options: {
+  plugins: () => [require("postcss-add-background-size")({
+    width:{
+      unit:"rem",
+      value:75
+    },
+    height:{
+      unit:"rem",
+      value:75
+    }
+   })],
+  },
+}
+
+```
+
+最终效果：
+
+```css
+.button1 {
+  background: url(../img/button1.png);
+  width: 1.33rem;
+  height: 0.8rem;
+  background-size: contain;
+  color: black;
+}
+.button2 {
+  background: url(../img/button2.png);
+  width: 1.33rem;
+  height: 0.8rem;
+  background-size: contain;
+  color: black;
+}
+```
+
+##### 案例 4
 
 webpack.config.js:
 
@@ -143,10 +189,10 @@ webpack.config.js:
   width: 100px;
   height: 60px;
   background-size: contain;
-  color:black;
+  color: black;
 }
 .button2 {
   background: url(../img/button2.png);
-  color:black;
+  color: black;
 }
 ```
