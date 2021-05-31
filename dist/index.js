@@ -4,7 +4,7 @@ const sizeOf = require("image-size");
 
 const DEFAULT_UNIT = "px";
 const DEFAULT_VALUE = 0;
-const DEFAULT_EXCLUDE_IMAGE = ["http"];
+const DEFAULT_EXCLUDE_IMAGE = ["http", "data:"];
 
 let fileInfoSession = new Map();
 
