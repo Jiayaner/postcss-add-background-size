@@ -196,3 +196,30 @@ webpack.config.js:
   color: black;
 }
 ```
+
+##### 案例 5
+
+若最终计算结果有误，可手动重写
+
+scss 文件
+
+```css
+.button1 {
+  background: url(../img/button1.png);
+  width: 120px;
+}
+```
+
+最终效果：
+
+```css
+.button1 {
+  background: url(../img/button1.png);
+  width: 100px; // 不生效
+  height: 60px;
+  background-size: contain;
+  width: 120px; // 生效
+}
+```
+
+> 有问题可联系作者https://blog.csdn.net/jiayaner/article/details/117370577
